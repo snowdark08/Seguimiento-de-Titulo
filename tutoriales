@@ -1,2 +1,4 @@
 https://mdbootstrap.com/docs/jquery/tables/scroll/
 https://material.angularjs.org/1.1.7/demo/panel
+https://community.powerbi.com/t5/Developer/Error-No-Access-Control-Allow-Origin-header-is-present-on-the/td-p/350280
+chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
