@@ -1,0 +1,13 @@
+.table-wrapper-scroll-y {
+display: block;
+max-height: 200px;
+overflow-y: auto;
+-ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.center {
+    margin: auto;
+    width: 60%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+}

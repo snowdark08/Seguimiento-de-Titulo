@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Seguimiento de Título</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/mdbootstrap.css">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-animate.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-touch.js"></script>
+
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-sanitize.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-route.min.js"></script>
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.js"></script>
+<script src="js/seguimientoController.js"></script>
+<link
+	href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<body ng-app="seguimientoApp" ng-controller="seguimientoCtrl"
+	ng-init="postdata()">
+
+	<div class="col" align="center">
+		<h1>Seguimiento de Título</h1>
+	</div>
+	<div>
+		<table class="table table-borderless" border="0"
+			style="width: 70%; margin: auto;">
+			<tbody>
+				<tr>
+					<td>Número de Título:
+						{{datosSeguimiento.lstTitulo[0].actoRegistral}}</td>
+					<td>Año de Título: {{datosSeguimiento.anoTitulo}}</td>
+					<td>Oficina Registral del Título:
+						{{datosSeguimiento.oficRegistral}}</td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+	<div
+		style="border: 2px solid green; width: 70%; margin: auto; padding: 25px">
+		<div>
+			<table class="table" border="0">
+				<tbody>
+					<tr>
+						<td>Tipo de Registro:</td>
+						<td>{{datosSeguimiento.lstTitulo[0].tipoRegistro}}</td>
+						<td>Partida:</td>
+						<td>{{"164846"}}</td>
+					</tr>
+					<tr>
+						<td>Actos Registrales:</td>
+						<td colspan="3">{{"RECTIFICACIÓN"}}</td>
+					</tr>
+					<tr>
+						<td>Fecha y Hora de Presentación:</td>
+						<td>{{datosSeguimiento.lstTitulo[0].fechaHoraPresentacion}}</td>
+						<td>Fecha de Vencimiento:</td>
+						<td>{{datosSeguimiento.lstTitulo[0].fechaVencimiento}}</td>
+					</tr>
+					<tr>
+						<td>Estado:</td>
+						<td>{{datosSeguimiento.lstTitulo[0].estadoActual}}</td>
+						<td>Lugar de Presentación:</td>
+						<td>{{datosSeguimiento.lstTitulo[0].lugarPresentacion}}</td>
+					</tr>
+					<tr>
+						<td>Presentante:</td>
+						<td colspan="3">{{datosSeguimiento.lstTitulo[0].nombrePresentante}}</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td colspan="3">{{datosSeguimiento.lstTitulo[0].documentoPresentante}}</td>
+					</tr>
+					<tr>
+						<td>Participantes:</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="table-wrapper-scroll-y">
+			<table class="table table-bordered table-striped">
+
+				<thead>
+					<tr>
+						<th scope="col">Tipo</th>
+						<th scope="col">Nombres/ Razón Social</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="x in datosSeguimiento.lstParticipantes">
+
+						<td>{{x.codTipoParticipante + " - " + x.desTipoParticipante}}</td>
+						<td colspan="3">{{x.nombresRazonSocial}}</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+		<br>
+		<div>
+			<div style="text-align: right;">
+				<a href="#" ng-click="isCollapsed = !isCollapsed">Ver Detalles
+					de Pago</a>
+			</div> 
+			
+			<div uib-collapse="isCollapsed">
+				<div class="table-wrapper-scroll-y">
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th scope="col">Lugar de Pago</th>
+								<th scope="col">Recibo</th>
+								<th scope="col">Monto S/.</th>
+								<th scope="col">Fecha</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in datosSeguimiento.lstPagos">
+								<td>{{x.desSedePago}}</td>
+								<td>{{x.numeroRecibo}}</td>
+								<td>{{x.montoRecibo}}</td>
+								<td>{{x.fechaRecibo}}</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="2" align="right">Total</td>
+								<td colspan="2">{{montoTotal}}</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+		</div>
+		<br> <br> <br>
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Leyenda:</h5>
+				<table class="table table-borderless">
+					<tbody>
+						<tr>
+							<td>PRESENTADO</td>
+							<td>INSCRITO</td>
+							<td>SUSPENDIDO</td>
+							<td>LIQUIDADO</td>
+						</tr>
+						<tr>
+							<td>EN PROCESO</td>
+							<td>OBSERVADO</td>
+							<td>TACHADO</td>
+							<td>APELADO</td>
+						</tr>
+						<tr>
+							<td>PRORROGADO</td>
+							<td>REINGRESADO</td>
+							<td>RESERVADO</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+				<br>
+				<div
+					style="margin: auto; width: 100%; border: 3px solid #73AD21; padding: 10px; text-align: center;">
+					<p>
+						<b>El título está
+							{{datosSeguimiento.lstTitulo[0].estadoActual}} Ver Anotación de
+							descripción 
+					</p>
+				</div>
+				<br>
+				<div style="text-align: right;">
+					<a href="#" class="card-link" style="align-content: ri;"><h4>Ver
+							más detalle del seguimiento de título</h4></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+</body>
+</html>
